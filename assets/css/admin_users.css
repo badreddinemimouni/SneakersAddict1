@@ -1,0 +1,994 @@
+.reste {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-title {
+    font-size: 28px;
+    margin: 0;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-add {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #555;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.users-table th,
+.users-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.users-table th {
+    background-color: #333;
+    color: white;
+    font-weight: 500;
+}
+
+.users-table tr:last-child td {
+    border-bottom: none;
+}
+
+.users-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge-admin {
+    background-color: #dc3545;
+    color: white;
+}
+
+.badge-client {
+    background-color: #28a745;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 22px;
+    margin: 0;
+}
+
+.close {
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-form {
+    display: grid;
+    gap: 15px;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+.btn-update {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-update:hover {
+    background-color: #218838;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.password-toggle {
+    position: relative;
+}
+
+.password-toggle input {
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+
+@media screen and (max-width: 992px) {
+    .admin-container {
+        padding: 15px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-width: 600px;
+        margin: 3% auto;
+        padding: 15px;
+    }
+
+    .users-table {
+        font-size: 14px;
+    }
+
+    .users-table th,
+    .users-table td {
+        padding: 10px 8px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .reste {
+        flex-direction: column !important;
+        padding: 10px;
+        min-height: auto !important;
+    }
+
+    .admin-container {
+        padding: 10px;
+    }
+
+    .admin-header h1 {
+        font-size: 24px;
+    }
+
+    .btn-add,
+    .btn-update,
+    .btn-delete {
+        padding: 12px 16px;
+        font-size: 16px;
+        min-height: 44px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 12px;
+        font-size: 16px;
+        min-height: 44px;
+    }
+
+    .modal-content {
+        width: 98%;
+        max-width: none;
+        margin: 1% auto;
+        padding: 15px;
+        max-height: 95vh;
+    }
+
+    .modal-title {
+        font-size: 20px;
+    }
+
+    .users-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        font-size: 12px;
+    }
+
+    .users-table thead,
+    .users-table tbody,
+    .users-table th,
+    .users-table td,
+    .users-table tr {
+        display: block;
+    }
+
+    .users-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .users-table tr {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .users-table td {
+        border: none;
+        position: relative;
+        padding: 8px 8px 8px 45%;
+        white-space: normal;
+        text-align: left;
+    }
+
+    .users-table td:before {
+        content: attr(data-label) ": ";
+        position: absolute;
+        left: 6px;
+        width: 40%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .actions {
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .btn-delete {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .admin-container {
+        padding: 5px;
+    }
+
+    .admin-header h1 {
+        font-size: 20px;
+    }
+
+    .modal-content {
+        padding: 12px;
+    }
+
+    .modal-title {
+        font-size: 18px;
+    }
+
+    .modal-form {
+        gap: 12px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px;
+    }
+
+    .users-table tr {
+        margin-bottom: 15px;
+        padding: 12px;
+    }
+
+    .users-table td {
+        padding: 6px 6px 6px 40%;
+        font-size: 13px;
+    }
+
+    .badge {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .btn-add,
+    .btn-update,
+    .btn-delete {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .form-group input,
+    .form-group select {
+        min-height: 44px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .users-table.table-scroll {
+        display: table;
+        min-width: 600px;
+        font-size: 12px;
+    }
+
+    .users-table.table-scroll thead,
+    .users-table.table-scroll tbody,
+    .users-table.table-scroll th,
+    .users-table.table-scroll td,
+    .users-table.table-scroll tr {
+        display: table-cell;
+    }
+
+    .users-table.table-scroll thead tr {
+        position: static;
+    }
+
+    .users-table.table-scroll td:before {
+        display: none;
+    }
+
+    .users-table.table-scroll th,
+    .users-table.table-scroll td {
+        padding: 8px 6px;
+        white-space: nowrap;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .action-buttons form {
+        width: 100% !important;
+        display: block !important;
+    }
+
+    .action-buttons button {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .admin-header {
+        text-align: center;
+        gap: 20px;
+    }
+
+    .admin-title {
+        margin-bottom: 0;
+    }
+
+    .admin-actions {
+        justify-content: center;
+    }
+
+    .modal-form .form-group {
+        position: relative;
+    }
+
+    .modal-form label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .modal-form label i {
+        color: #666;
+        width: 16px;
+    }
+
+    .password-toggle {
+        position: relative;
+    }
+
+    .password-toggle .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #666;
+        padding: 8px;
+        background: none;
+        border: none;
+        font-size: 16px;
+        z-index: 2;
+    }
+
+    .password-toggle input {
+        padding-right: 45px !important;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+    }
+
+    .modal-footer {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .modal-footer .actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .modal-footer .btn-delete,
+    .modal-footer .btn-update {
+        flex: 1;
+        min-width: 120px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .admin-header {
+        padding: 15px 0;
+    }
+
+    .admin-title {
+        font-size: 22px;
+        line-height: 1.2;
+    }
+
+    .modal-content {
+        padding: 15px;
+        margin: 2% auto;
+    }
+
+    .modal-header {
+        margin-bottom: 15px;
+    }
+
+    .modal-title {
+        font-size: 18px;
+        line-height: 1.3;
+    }
+
+    .modal-form {
+        gap: 15px;
+    }
+
+    .modal-form label {
+        font-size: 13px;
+    }
+
+    .modal-form input,
+    .modal-form select {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .modal-footer .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-footer .btn-delete,
+    .modal-footer .btn-update {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .users-table tr {
+        padding: 15px;
+        margin-bottom: 12px;
+    }
+
+    .users-table td {
+        padding: 8px 8px 8px 35%;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .users-table td:before {
+        width: 30%;
+        font-size: 12px;
+        left: 8px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: #666;
+    }
+
+    .empty-state i {
+        font-size: 48px;
+        margin-bottom: 16px;
+        color: #ddd;
+    }
+
+    .empty-state h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .empty-state p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+        margin: 2% auto;
+    }
+
+    .modal-form {
+        gap: 10px;
+    }
+
+    .modal-form .form-group {
+        margin-bottom: 10px;
+    }
+
+    .admin-header {
+        padding: 10px 0;
+    }
+
+    .admin-title {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .users-table tr {
+        transition: transform 0.2s ease;
+    }
+
+    .users-table tr:active {
+        transform: scale(0.98);
+    }
+
+    .btn-add,
+    .btn-update,
+    .btn-delete {
+        transition: all 0.2s ease;
+    }
+
+    .btn-add:active,
+    .btn-update:active,
+    .btn-delete:active {
+        transform: scale(0.95);
+    }
+}
+
+.form-group.focused {
+    position: relative;
+}
+
+.form-group.focused label {
+    color: #007bff;
+}
+
+.form-group input.success {
+    border-color: #28a745;
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
+}
+
+.form-group input.error {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+}
+
+.btn-add,
+.btn-update,
+.btn-delete {
+    transition: all 0.2s ease;
+    will-change: transform;
+}
+
+.password-toggle .toggle-password {
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.password-toggle .toggle-password:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.password-toggle .toggle-password:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .users-table tr {
+        will-change: transform;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .users-table tr:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-group input:focus {
+        transform: scale(1.02);
+        transition: transform 0.2s ease;
+    }
+
+    .form-group input:not(:focus) {
+        transform: scale(1);
+        transition: transform 0.2s ease;
+    }
+
+    .form-group input::placeholder {
+        color: #999;
+        opacity: 1;
+    }
+
+    .form-group input:focus::placeholder {
+        color: #bbb;
+        transition: color 0.2s ease;
+    }
+
+    .badge {
+        transition: transform 0.2s ease;
+    }
+
+    .badge:active {
+        transform: scale(0.95);
+    }
+
+    .action-buttons button {
+        will-change: transform;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .action-buttons button::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transition: width 0.3s ease, height 0.3s ease;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+
+    .action-buttons button:active::before {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .users-table tr:hover {
+        background-color: transparent;
+    }
+
+    .btn-add:hover,
+    .btn-update:hover,
+    .btn-delete:hover {
+        background-color: initial;
+    }
+
+    .btn-add:active,
+    .btn-update:active,
+    .btn-delete:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .users-table tr,
+    .btn-add,
+    .btn-update,
+    .btn-delete,
+    .form-group input,
+    .badge {
+        transition: none !important;
+    }
+
+    .action-buttons button::before {
+        display: none;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .form-group input.success {
+        border-color: #20c997;
+        box-shadow: 0 0 0 2px rgba(32, 201, 151, 0.2);
+    }
+
+    .form-group input.error {
+        border-color: #e74c3c;
+        box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .toggle-password {
+        min-width: 44px !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 12px !important;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .toggle-password:active {
+        transform: scale(0.95);
+        background-color: rgba(0, 123, 255, 0.1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form-group input {
+        font-size: 16px !important;
+    }
+
+    input[type="email"] {
+        -webkit-text-security: none;
+        -webkit-appearance: none;
+    }
+
+    .form-group:has(input:focus) {
+        position: relative;
+    }
+
+    .form-group:has(input:focus) label {
+        color: #007bff;
+        transform: translateY(-2px);
+        transition: all 0.2s ease;
+    }
+
+    .form-group input:valid:not(:placeholder-shown) {
+        border-color: #28a745;
+        box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
+    }
+
+    .form-group input:invalid:not(:placeholder-shown) {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .users-table tr {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+    }
+
+    .users-table tr:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .users-table tr:not(:active) {
+        transition: transform 0.3s ease;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .action-buttons button {
+        min-height: 44px !important;
+        padding: 12px 16px !important;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .action-buttons button:active {
+        transform: scale(0.95);
+    }
+
+    .action-buttons button::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s ease, height 0.3s ease;
+        pointer-events: none;
+    }
+
+    .action-buttons button:active::after {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .modal-content {
+        max-height: 95vh;
+        overflow-y: auto;
+        margin: 2vh auto;
+        transition: max-height 0.3s ease, margin-top 0.3s ease;
+    }
+
+    @media screen and (max-width: 768px) and (max-height: 600px) {
+        .modal-content {
+            max-height: 90vh;
+            margin-top: 2vh;
+        }
+    }
+
+    @media screen and (max-width: 768px) and (max-height: 500px) {
+        .modal-content {
+            max-height: 85vh;
+            margin-top: 1vh;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .modal-content {
+        max-height: 95vh;
+        margin-top: 2.5vh;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .modal-content {
+        max-height: 90vh;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+    }
+
+    .modal-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .modal-header {
+        padding: 15px 20px;
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .mobile-menu.active {
+        display: none !important;
+    }
+
+    .mobile-menu-overlay.active {
+        display: none !important;
+    }
+}
