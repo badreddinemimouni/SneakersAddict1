@@ -8,6 +8,9 @@ session_start();
 
 require_once 'app/core/Router.php';
 require_once 'app/core/Controller.php';
+require_once 'app/services/SecurityService.php';
+
+SecurityService::checkRouteAccess();
 
 $router = new Router();
 
@@ -29,6 +32,7 @@ $router->get('check_stock', 'ProductController', 'checkStock');
 
 $router->get('cart', 'CartController', 'index');
 $router->post('cart', 'CartController', 'update');
+$router->get('cart_remove', 'CartController', 'remove');
 $router->get('Panier', 'CartController', 'index'); 
 $router->post('Panier', 'CartController', 'update'); 
 

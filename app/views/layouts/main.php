@@ -42,20 +42,7 @@
     </header>
     
     <main id="main-content" role="main">
-        <section class="alerts-section">
-            <?php 
-            if (isset($_GET['error'])): ?>
-                <div class="alert alert-error">
-                    <?php echo htmlspecialchars($_GET['error']); ?>
-                </div>
-            <?php endif;
-            
-            if (isset($_GET['success'])): ?>
-                <div class="alert alert-success">
-                    <?php echo htmlspecialchars($_GET['success']); ?>
-                </div>
-            <?php endif; ?>
-        </section>
+      
         
         <section class="page-content">
             <?php 

@@ -54,7 +54,7 @@
                         <label for="remember">Se souvenir de moi</label>
                     </div>
                     
-                    <button type="submit" name="su" class="btn-submit">
+                    <button type="submit" name="login" class="btn-submit">
                         <i class="fas fa-sign-in-alt"></i> Se connecter
                     </button>
                     

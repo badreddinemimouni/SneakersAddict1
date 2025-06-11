@@ -79,7 +79,7 @@ class AuthController extends Controller {
         if (isset($_POST['register'])) {
             $this->handleRegister();
             return;
-        } elseif (isset($_POST['su'])) {
+        } elseif (isset($_POST['login'])) {
             $this->handleLogin();
             return;
         }

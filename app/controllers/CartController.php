@@ -33,7 +33,16 @@ class CartController extends Controller {
             session_start();
         }
         
-        if (isset($_POST['supprimer']) && isset($_POST['produit_id'])) {
+        if (isset($_GET['id'])) {
+            $produit_id = $_GET['id'];
+            if (isset($_SESSION['panier'][$produit_id])) {
+                unset($_SESSION['panier'][$produit_id]);
+            }
+            $this->redirect('cart');
+            return;
+        }
+        
+        if (isset($_POST['delete_product_cart']) && isset($_POST['produit_id'])) {
             $produit_id = $_POST['produit_id'];
             
             if (isset($_SESSION['panier'][$produit_id])) {
@@ -49,7 +58,6 @@ class CartController extends Controller {
             session_start();
         }
         
-        error_log("CartController::update() appelé avec POST : " . print_r($_POST, true));
         
         if (isset($_POST['action']) && $_POST['action'] === 'add') {
             if (isset($_POST['product_id']) && isset($_POST['size']) && isset($_POST['quantity'])) {
@@ -57,7 +65,7 @@ class CartController extends Controller {
                 $size = $_POST['size'];
                 $quantity = (int)$_POST['quantity'];
                 
-                error_log("Ajout au panier : product_id=$product_id, size=$size, quantity=$quantity");
+                // error_log("Ajout au panier : product_id=$product_id, size=$size, quantity=$quantity");
                 
                 if ($product_id > 0 && !empty($size) && $quantity > 0) {
                     $this->cartModel->addProduct($product_id, $size, $quantity);
@@ -72,13 +80,22 @@ class CartController extends Controller {
             return;
         }
         
-        if (isset($_POST['modifier']) && isset($_POST['produit_id']) && isset($_POST['nouvelle_quantite'])) {
+        if (isset($_POST['edit']) && isset($_POST['produit_id']) && isset($_POST['nouvelle_quantite'])) {
             $produit_id = $_POST['produit_id'];
             $nouvelle_quantite = (int)$_POST['nouvelle_quantite'];
             
             if (isset($_SESSION['panier'][$produit_id]) && $nouvelle_quantite > 0) {
                 $_SESSION['panier'][$produit_id]['quantite'] = $nouvelle_quantite;
             }
+        }
+        
+        if (isset($_POST['delete_product_cart']) && isset($_POST['produit_id'])) {
+            $this->remove();
+            return;
+        }
+        
+        if (isset($_POST['vider'])) {
+            $_SESSION['panier'] = [];
         }
         
         $this->redirect('cart');

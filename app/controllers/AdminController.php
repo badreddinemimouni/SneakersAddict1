@@ -31,7 +31,6 @@ class AdminController extends Controller {
     }
     
     public function stock() {
-        // Vérification session + headers no-cache
         SecurityService::setNoCacheHeaders();
         if (!$this->isAdmin()) {
             $this->redirect('login');
@@ -97,7 +96,6 @@ class AdminController extends Controller {
     }
     
     public function users() {
-        // Vérification session + headers no-cache
         SecurityService::setNoCacheHeaders();
         if (!$this->isAdmin()) {
             $this->redirect('login');
@@ -108,7 +106,6 @@ class AdminController extends Controller {
         $messageType = '';
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Debug - à enlever après test
             error_log("AdminController::users() POST reçu : " . print_r($_POST, true));
             
             if (!isset($_POST['csrf_token']) || !SecurityService::validateCSRFToken($_POST['csrf_token'])) {

@@ -54,9 +54,9 @@ class User extends Model {
         return $this->query("UPDATE user_site SET Grade = ? WHERE user_id = ?", [$newRole, $userId]);
     }
     
-    public function updateLastLogin($userId) {
-        return true;
-    }
+    // public function updateLastLogin($userId) {
+    //     return true;
+    // }
     
     public function getUserStats() {
         return [

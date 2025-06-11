@@ -24,14 +24,7 @@ class AuthService {
     }
     
     
-    public static function isLoggedIn() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        
-        return isset($_SESSION['admin']) && $_SESSION['admin'] === true || 
-               isset($_SESSION['client']) && $_SESSION['client'] === true;
-    }
+
     
    
     public static function isAdmin() {
@@ -66,7 +59,7 @@ class AuthService {
         $auth = self::getAuthData();
         
         return [
-            'show_products' => $auth['is_personne'],
+            'show_products' => $auth['is_logged_in'],
             'show_admin_links' => $auth['is_admin']
         ];
     }

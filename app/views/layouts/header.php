@@ -59,7 +59,7 @@ $nav = $headerData['navigation'];
                                                 <?php echo $produit['prix'] * $produit['quantite']; ?> €
                                             </p>
                                         </div>
-                                        <a href="<?php echo UrlService::route('cart', ['action' => 'supprimer', 'id' => $id_produit]); ?>" 
+                                        <a href="<?php echo UrlService::route('cart_remove', ['id' => $id_produit]); ?>" 
                                            class="mini-panier-supprimer">×</a>
                                     </li>
                                 <?php endforeach; ?>

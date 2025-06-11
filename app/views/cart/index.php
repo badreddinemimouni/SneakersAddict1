@@ -1,5 +1,6 @@
 <?php
 $pageTitle = 'Votre Panier - SneakersAddict';
+require_once __DIR__ . '/../../services/UrlService.php';
 ?>
 
 <div class="reste">
@@ -17,7 +18,7 @@ $pageTitle = 'Votre Panier - SneakersAddict';
             <?php if(empty($panier)): ?>
                 <div class="panier-vide">
                     <p>Votre panier est vide.</p>
-                    <p><a href="Produits.php">Continuer vos achats</a></p>
+                    <p><a href="<?php echo UrlService::route('products'); ?>">Continuer vos achats</a></p>
                 </div>
             <?php else: ?>
                 <table>
@@ -43,14 +44,14 @@ $pageTitle = 'Votre Panier - SneakersAddict';
                                     <form method="post" action="?route=cart" style="display:inline;">
                                         <input type="hidden" name="produit_id" value="<?php echo $id_produit; ?>">
                                         <input type="number" name="nouvelle_quantite" value="<?php echo $produit['quantite']; ?>" min="1" class="quantite-input">
-                                        <button type="submit" name="modifier" class="btn-action btn-update">Mettre à jour</button>
+                                        <button type="submit" name="edit" class="btn-action btn-update">Mettre à jour</button>
                                     </form>
                                 </td>
                                 <td><?php echo $produit['prix'] * $produit['quantite']; ?> €</td>
                                 <td>
                                     <form method="post" action="?route=cart" style="display:inline;">
                                         <input type="hidden" name="produit_id" value="<?php echo $id_produit; ?>">
-                                        <button type="submit" name="supprimer" class="btn-action">Supprimer</button>
+                                        <button type="submit" name="delete_product_cart" class="btn-action">Supprimer</button>
                                     </form>
                                 </td>
                             </tr>

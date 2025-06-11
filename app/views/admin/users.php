@@ -9,7 +9,7 @@ $GLOBALS['view_js_files'] = [
 ];
 
 $GLOBALS['view_inline_styles'] = '
-.reste {
+.C {
     display: flex !important;
     flex-direction: row !important;
 }

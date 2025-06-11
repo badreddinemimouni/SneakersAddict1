@@ -9,16 +9,6 @@ class SecurityService {
         return $data;
     }
 
-    public static function redirectWithError($route, $error) {
-        header("Location: ?route=" . $route . "&error=" . urlencode($error));
-        exit();
-    }
-    
-    public static function redirectWithSuccess($page, $success) {
-        $separator = strpos($page, '?') !== false ? '&' : '?';
-        header("Location: {$page}{$separator}success={$success}");
-        exit();
-    }
 
     public static function isLoggedIn($role = null) {
         if (session_status() === PHP_SESSION_NONE) {
@@ -50,29 +40,9 @@ class SecurityService {
         return self::isLoggedIn() && isset($_SESSION['client']) && $_SESSION['client'] === true;
     }
     
-    public static function escape($data) {
-        if (is_array($data)) {
-            return array_map('self::escape', $data);
-        }
+    
         
-        return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
-    }
-    
-    public static function validateEmail($email) {
-        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
-    }
-    
-    public static function validatePassword($password) {
-        return strlen($password) >= 4;
-    }
-    
-    public static function hashPassword($password) {
-        return password_hash($password, PASSWORD_DEFAULT);
-    }
-    
-    public static function verifyPassword($password, $hash) {
-        return password_verify($password, $hash);
-    }
+  
 
     public static function generateCSRFToken() {
         if (session_status() === PHP_SESSION_NONE) {
@@ -130,17 +100,24 @@ class SecurityService {
             $route = $_GET['route'] ?? 'home';
         }
         
-        $publicRoutes = ['home', 'login', 'contact', 'product', 'products'];
+        $publicRoutes = ['home', 'login'];
+        
+        $loginRequiredRoutes = ['products', 'contact', 'cart', 'checkout', 'payment', 'confirmation'];
         
         $adminRoutes = ['admin_stock', 'admin_users'];
-        
-        if (in_array($route, $adminRoutes) || in_array($route, ['cart', 'checkout', 'payment', 'confirmation'])) {
-            self::setNoCacheHeaders();
-        }
         
         if (in_array($route, $adminRoutes) && !self::isAdmin()) {
             header('Location: ?route=login');
             exit();
+        }
+        
+        if (in_array($route, $loginRequiredRoutes) && !self::isLoggedIn()) {
+            header('Location: ?route=login');
+            exit();
+        }
+        
+        if (in_array($route, $adminRoutes) || in_array($route, $loginRequiredRoutes)) {
+            self::setNoCacheHeaders();
         }
         
         return true;
@@ -150,6 +127,6 @@ class SecurityService {
         header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
         header("Cache-Control: post-check=0, pre-check=0", false);
         header("Pragma: no-cache");
-        header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date dans le passé
+        header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
     }
 } 
