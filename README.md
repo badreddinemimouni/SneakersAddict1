@@ -1,8 +1,11 @@
 # SneakersAddict
 
-##Autres projets
-
 Site e-commerce de vente de chaussures de sport.
+
+## Compte Admin du site
+
+Email: test34@mail.com
+password: badr
 
 ## Petite précision concernant la réintiaisation du repo
 
