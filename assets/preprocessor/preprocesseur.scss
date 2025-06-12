@@ -1,0 +1,10 @@
+$special-color: #333;
+$special-font-size: 24 px;
+
+.site-title {
+    font-size: $special-font-size;
+    margin: 0;
+    display: inline-block;
+    color: $special-color;
+    font-family: "Roboto Slab", serif;
+}

@@ -10,6 +10,7 @@ abstract class Controller {
         $this->data = array_merge($this->data, $data);
         
         extract($this->data);
+    
         // capture content de la vue
         ob_start();
         $viewFile = __DIR__ . '/../views/' . $view . '.php';

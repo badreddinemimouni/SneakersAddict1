@@ -104,7 +104,7 @@ class SecurityService {
         
         $loginRequiredRoutes = ['products', 'contact', 'cart', 'checkout', 'payment', 'confirmation'];
         
-        $adminRoutes = ['admin_stock', 'admin_users'];
+        $adminRoutes = ['admin_stock', 'admin_users','admin/stock', 'admin'];
         
         if (in_array($route, $adminRoutes) && !self::isAdmin()) {
             header('Location: ?route=login');

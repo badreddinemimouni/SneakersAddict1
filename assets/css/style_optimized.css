@@ -229,13 +229,13 @@ img {
     margin-right: 15px;
 }
 
-.site-title {
+/* .site-title {
     font-size: 24px;
     margin: 0;
     display: inline-block;
     color: #333;
     font-family: "Roboto Slab", serif;
-}
+} */
 
 #petit_boutons {
     display: flex;
