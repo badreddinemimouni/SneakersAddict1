@@ -2,6 +2,9 @@
 $GLOBALS['view_js_files'] = [
     'assets/js/product-stock.js'
 ];
+$GLOBALS['view_css_files'] = [
+    'assets/css/product_stock.css'
+];
 ?>
 
 <div class="reste">

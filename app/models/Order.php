@@ -20,7 +20,7 @@ class Order extends Model {
             }
         }
     }
-    
+    // ca pourrait servir pour les historiques des commandes pour plus tard (a ameliorer)
     public function create($orderData) {
         $sql = "INSERT INTO orders (order_number, customer_name, customer_email, total_amount, order_date, status) 
                 VALUES (?, ?, ?, ?, ?, 'pending')";
@@ -36,21 +36,7 @@ class Order extends Model {
         return $this->pdo->lastInsertId();
     }
     
-    public function addOrderItems($orderId, $products) {
-        foreach ($products as $product) {
-            $sql = "INSERT INTO order_items (order_id, product_id, product_name, size, quantity, price) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-            
-            $this->query($sql, [
-                $orderId,
-                $product['id'],
-                $product['nom'],
-                $product['pointure'],
-                $product['quantite'],
-                $product['prix']
-            ]);
-        }
-    }
+   
     
     public function getById($id) {
         return $this->fetch("SELECT * FROM orders WHERE id = ?", [$id]);

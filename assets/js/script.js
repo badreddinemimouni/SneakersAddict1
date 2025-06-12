@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const miniPanier = document.getElementById("mini-panier");
 
   if (miniCartIcon && miniPanier) {
-    console.log("Mini panier initialisé");
+    // console.log("Mini panier initialisé");
 
     miniCartIcon.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log("Clic sur panier");
+      // console.log("Clic sur panier");
       miniPanier.style.display =
         miniPanier.style.display === "block" ? "none" : "block";
     });
@@ -111,31 +111,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function highlightField(field, message) {
-    field.classList.add("field-error");
-
-    let errorMessage = field.nextElementSibling;
-    if (!errorMessage || !errorMessage.classList.contains("error-message")) {
-      errorMessage = document.createElement("div");
-      errorMessage.classList.add("error-message");
-      field.parentNode.appendChild(errorMessage);
-    }
-    errorMessage.textContent = message;
-  }
-
-  function resetField(field) {
-    field.classList.remove("field-error");
-
-    const errorMessage = field.nextElementSibling;
-    if (errorMessage && errorMessage.classList.contains("error-message")) {
-      errorMessage.remove();
-    }
-  }
-
    function setupPasswordToggle(toggleId, passwordId) {
     const toggleBtn = document.getElementById(toggleId);
     const passwordField = document.getElementById(passwordId);
-
+ // on au click sur l'oeil on change le type de passwordField afficher ou cacher 
     if (toggleBtn && passwordField) {
       toggleBtn.addEventListener("click", function () {
         const type =

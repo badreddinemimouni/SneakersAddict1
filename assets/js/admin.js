@@ -47,27 +47,4 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
-
-    document.querySelectorAll('[id^="pointure-"]').forEach((selector) => {
-        const produitId = selector.id.replace("pointure-", "");
-        const inputQuantite = document.getElementById(`quantite-${produitId}`);
-
-        if (selector && inputQuantite) {
-            selector.addEventListener("change", function () {
-                const pointureId = this.value;
-
-                if (pointureId) {
-                    fetch(`get_stock.php?produit_id=${produitId}&pointure_id=${pointureId}`)
-                        .then((response) => response.json())
-                        .then((data) => {
-                            inputQuantite.value = data.success ? data.amount : 0;
-                        })
-                        .catch((error) => {
-                            console.error("Erreur:", error);
-                            inputQuantite.value = 0;
-                        });
-                }
-            });
-        }
-    });
 });

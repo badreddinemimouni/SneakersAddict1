@@ -27,33 +27,6 @@ class AuthService {
 
     
    
-    public static function isAdmin() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        
-        return isset($_SESSION['admin']) && $_SESSION['admin'] === true && 
-               isset($_SESSION['client']) && $_SESSION['client'] === false;
-    }
-    
-    
-    public static function isClient() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        
-        return isset($_SESSION['client']) && $_SESSION['client'] === true;
-    }
-    
-   
-    public static function isPersonne() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        
-        return isset($_SESSION['personne']) && $_SESSION['personne'] === false;
-    }
-    
    
     public static function getNavigationData() {
         $auth = self::getAuthData();

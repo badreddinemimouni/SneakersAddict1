@@ -7,7 +7,8 @@ define('DB_USER', 'sneakersadd_9893');
 define('DB_PASSWORD', 'AJNA94M9ogcIPMkhigr9FW6APIdK7z6KHLNngODp2M8qqALF85CcUCVsdRssEMBT'); 
 
 define('SITE_NAME', 'SneakersAddict');
-define('SITE_URL', 'https://sneakersaddict.osc-fr1.scalingo.io/');
+define('SITE_URL', 'http://localhost/badr/');
+// define('SITE_URL', 'https://sneakersaddict.osc-fr1.scalingo.io/');
 define('ADMIN_EMAIL', 'admin@sneakersaddict.com');
 
 define('SESSION_NAME', 'SNEAKERSADDICT_SESSION');

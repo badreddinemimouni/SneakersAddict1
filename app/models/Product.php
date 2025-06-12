@@ -21,6 +21,7 @@ class Product extends Model {
                 LEFT JOIN stock_size ss ON s.id = ss.stock_id 
                 WHERE s.id = ?
                 GROUP BY s.id";
+                // var_dump($this->fetch($sql, [$id]));
         return $this->fetch($sql, [$id]);
     }
     

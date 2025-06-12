@@ -5,6 +5,7 @@ $GLOBALS['view_css_files'] = [
 ];
 
 $GLOBALS['view_js_files'] = [
+    'assets/js/admin.js',
     'assets/js/admin-users.js'
 ];
 

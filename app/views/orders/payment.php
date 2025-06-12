@@ -3,6 +3,9 @@ $GLOBALS['view_css_files'] = [
     'assets/css/checkout.css',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
 ];
+$GLOBALS['view_js_files'] = [
+    'assets/js/card-payment.js'
+];
 
 require_once __DIR__ . '/../../services/UrlService.php';
 ?>

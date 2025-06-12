@@ -33,6 +33,7 @@ $nav = $headerData['navigation'];
         </nav>
             
         <div class="header-right">
+            <?php if ($nav['show_products']): ?>
                 <div class="panier-wrapper">
                     <a href="javascript:void(0);" id="panier-icon">
                         <img src="assets/images/PANIER.png" alt="panier" id="petit_panier">
@@ -74,7 +75,8 @@ $nav = $headerData['navigation'];
                         <?php endif; ?>
                     </div>
                 </div>
-                
+                <?php endif; ?>
+
                 <?php if ($auth['is_logged_in']): ?>
                     <a href="<?php echo UrlService::route('logout'); ?>" class="bouton bouton-right">Se déconnecter</a>
                 <?php else: ?>

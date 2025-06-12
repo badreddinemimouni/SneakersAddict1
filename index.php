@@ -14,6 +14,7 @@ SecurityService::checkRouteAccess();
 
 $router = new Router();
 
+
 $router->get('home', 'HomeController', 'index');
 $router->get('main', 'HomeController', 'index'); 
 

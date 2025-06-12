@@ -1,56 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    function initUserModal() {
-        const modal = document.getElementById("add-user-modal");
-        const openBtn = document.getElementById("btn-add-user");
-        const closeBtn = modal ? modal.querySelector(".close") : null;
-        const cancelBtn = modal ? modal.querySelector(".modal-cancel") : null;
-
-        if (modal && openBtn) {
-            openBtn.addEventListener("click", () => {
-                modal.style.display = "flex";
-            });
-
-            if (closeBtn) {
-                closeBtn.addEventListener("click", () => {
-                    modal.style.display = "none";
-                });
-            }
-
-            if (cancelBtn) {
-                cancelBtn.addEventListener("click", () => {
-                    modal.style.display = "none";
-                });
-            }
-
-            window.addEventListener("click", (e) => {
-                if (e.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
-
-            document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape" && modal.style.display === "flex") {
-                    modal.style.display = "none";
-                }
-            });
-        }
-    }
-
-    function initPasswordToggles() {
-        document.querySelectorAll(".toggle-password").forEach((toggle) => {
-            toggle.addEventListener("click", function () {
-                const input = this.previousElementSibling;
-                if (input) {
-                    const isPassword = input.type === "password";
-
-                    input.type = isPassword ? "text" : "password";
-                    this.classList.toggle("fa-eye", !isPassword);
-                    this.classList.toggle("fa-eye-slash", isPassword);
-                }
-            });
-        });
-    }
-
     function initUserFormValidation() {
         const userForm = document.querySelector("#add-user-modal form");
 
@@ -113,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function initAdminConfirmations() {
+        // pour parcourir les formulaires qui ont  data-confirm
         document.querySelectorAll("form[data-confirm]").forEach((form) => {
             const newForm = form.cloneNode(true);
             form.parentNode.replaceChild(newForm, form);
@@ -129,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
-
+    // pour animation de chargement
     function initButtonAnimations() {
         document.querySelectorAll("form").forEach((form) => {
             form.addEventListener("submit", function (e) {
@@ -188,12 +137,10 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href.includes("admin_users") ||
             document.getElementById("add-user-modal")
         ) {
+            initTooltips();
             initAdminConfirmations();
-            initUserModal();
-            initPasswordToggles();
             initUserFormValidation();
             initButtonAnimations();
-            initTooltips();
 
             console.log("Admin Users JS chargé avec succès");
         }

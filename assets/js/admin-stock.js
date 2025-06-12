@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
             initProductFormValidation();
             initActionButtons();
 
-            console.log("Admin Stock JS chargé avec succès");
+            console.log("admin js chargé");
         }
     }
 

@@ -25,7 +25,7 @@ class CartController extends Controller {
             'panier' => $panier,
             'total' => $total,
             'pageTitle' => 'Mon Panier - SneakersAddict'
-        ]);
+        ]); 
     }
     
     public function remove() {

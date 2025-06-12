@@ -32,10 +32,10 @@ class AdminController extends Controller {
     
     public function stock() {
         SecurityService::setNoCacheHeaders();
-        if (!$this->isAdmin()) {
-            $this->redirect('login');
-            return;
-        }
+        // if (!$this->isAdmin()) {
+        //     $this->redirect('login');
+        //     return;
+        // }
         
         $message = '';
         $messageType = '';
@@ -193,10 +193,8 @@ class AdminController extends Controller {
         $quantite = (int)$data['quantite'];
         $prix = (float)$data['prix'];
         
-        error_log("Parsed data: produit_id=$produit_id, pointure_id=$pointure_id, quantite=$quantite, prix=$prix");
         
         $stock_size = $this->checkStockSize($produit_id, $pointure_id);
-        error_log("Existing stock_size: " . print_r($stock_size, true));
         
         if ($stock_size) {
             $this->updateStockSize($stock_size['id'], $quantite);

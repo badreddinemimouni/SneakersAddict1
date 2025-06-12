@@ -13,10 +13,4 @@ class UrlService {
         return $url;
     }
     
-    
-    public static function redirect($route, $params = []) {
-        $url = self::route($route, $params);
-        header('Location: ' . $url);
-        exit();
-    }
 } 

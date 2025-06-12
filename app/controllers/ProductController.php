@@ -68,6 +68,7 @@ class ProductController extends Controller {
         
         $product = $this->productModel->getById($id);
         
+        
         if (!$product) {
             $this->redirect('products');
             return;

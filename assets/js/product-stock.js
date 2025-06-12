@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function initStockCheck() {
         const pointureSelect = document.getElementById("pointure");
         const selectedSizeInput = document.getElementById("selected_size");
-        const addCartForm = document.getElementById("add-to-cart-form");
+        // const addCartForm = document.getElementById("add-to-cart-form");
         const addCartBtn = document.getElementById("add-to-cart-btn");
         const verifBtn = document.getElementById("verif_pointure");
         const resultat = document.getElementById("resultat_pointure");
@@ -13,73 +13,67 @@ document.addEventListener("DOMContentLoaded", function () {
             if (selectedSizeInput) {
                 selectedSizeInput.value = this.value;
             }
-            resultat.innerHTML = "";
+            // resultat.innerHTML = "";
         });
+        try {
+            verifBtn.addEventListener("click", async function () {
+                const pointure = pointureSelect.value;
 
-        verifBtn.addEventListener("click", function () {
-            const pointure = pointureSelect.value;
+                const productIdElement = document.querySelector("[data-product-id]");
+                const productId = productIdElement
+                    ? productIdElement.dataset.productId
+                    : getProductIdFromScript();
 
-            const productIdElement = document.querySelector("[data-product-id]");
-            const productId = productIdElement
-                ? productIdElement.dataset.productId
-                : getProductIdFromScript();
+                if (!pointure) {
+                    resultat.innerHTML = " ❌ Veuillez choisir une taille";
+                    return;
+                }
 
-            if (!pointure) {
-                resultat.innerHTML = " ❌ Veuillez choisir une taille";
-                return;
-            }
+                if (!productId) {
+                    resultat.innerHTML = " ❌ Erreur: ID produit non trouvé";
+                    return;
+                }
 
-            if (!productId) {
-                resultat.innerHTML = " ❌ Erreur: ID produit non trouvé";
-                return;
-            }
+                resultat.innerHTML = " ⏳ Vérification...";
 
-            resultat.innerHTML = " ⏳ Vérification...";
+                const url = `?route=check_stock&product_id=${productId}&size=${pointure}`;
+                // console.log("URL appelée:", url);
 
-            const url = `?route=check_stock&product_id=${productId}&size=${pointure}`;
-            console.log("URL appelée:", url);
+                const response = await fetch(url);
+                // console.log("Response status:", response.status);
+                // console.log("Response OK:", response.ok);
 
-            fetch(url)
-                .then((response) => {
-                    console.log("Response status:", response.status);
-                    console.log("Response OK:", response.ok);
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}`);
-                    }
-
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log("Données reçues:", data);
-
-                    if (data.error) {
-                        resultat.innerHTML = ` ❌ ${data.error}`;
-                        resultat.className = "stock-error";
-                    } else if (data.available) {
-                        resultat.innerHTML = " ✅ Disponible";
-                        resultat.className = "stock-available";
-
-                        if (addCartBtn) {
-                            addCartBtn.disabled = false;
-                            addCartBtn.classList.remove("disabled");
-                        }
-                    } else {
-                        resultat.innerHTML = " ❌ Indisponible";
-                        resultat.className = "stock-unavailable";
-
-                        if (addCartBtn) {
-                            addCartBtn.disabled = true;
-                            addCartBtn.classList.add("disabled");
-                        }
-                    }
-                })
-                .catch((error) => {
-                    console.error("Erreur fetch:", error);
-                    resultat.innerHTML = " ❌ Erreur de vérification: " + error.message;
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const data = await response.json();
+                if (data.error) {
+                    resultat.innerHTML = ` ❌ ${data.error}`;
                     resultat.className = "stock-error";
-                });
-        });
+                } else if (data.available) {
+                    resultat.innerHTML = " ✅ Disponible";
+                    resultat.className = "stock-available";
+
+                    if (addCartBtn) {
+                        addCartBtn.disabled = false;
+                        addCartBtn.classList.remove("disabled");
+                    }
+                } else {
+                    resultat.innerHTML = " ❌ Indisponible";
+                    resultat.className = "stock-unavailable";
+
+                    if (addCartBtn) {
+                        addCartBtn.disabled = true;
+                        addCartBtn.classList.add("disabled");
+                    }
+                }
+            });
+        } catch (error) {
+            console.log("Erreur fetch:", error);
+            // console.error("Erreur fetch:", error);
+            resultat.innerHTML = " ❌ Erreur de vérification: " + error.message;
+            resultat.className = "stock-error";
+        }
     }
 
     function getProductIdFromScript() {
@@ -136,22 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (addCartForm && addCartBtn) {
             addCartForm.addEventListener("submit", function (e) {
-                const originalText = addCartBtn.innerHTML;
                 addCartBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ajout...';
                 addCartBtn.disabled = true;
             });
         }
-    }
-
-    function initVisualFeedback() {
-        const style = document.createElement("style");
-        style.textContent = `
-            .stock-available { color: #28a745; font-weight: bold; }
-            .stock-unavailable { color: #dc3545; font-weight: bold; }
-            .stock-error { color: #ffc107; font-weight: bold; }
-            .disabled { opacity: 0.6; cursor: not-allowed; }
-        `;
-        document.head.appendChild(style);
     }
 
     function init() {
@@ -162,9 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
             initStockCheck();
             initCartValidation();
             initAddToCartAnimation();
-            initVisualFeedback();
-
-            console.log("Product Stock JS chargé avec succès");
         }
     }
 
